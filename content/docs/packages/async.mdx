@@ -8,7 +8,7 @@ This package is all you need to handle async requests / logic / flow effectively
 You could wrap your async actions into the main primitive `reatomAsync` and get basic action hooks: `onFulfill`, `onReject`, `onSettle` and `pendingAtom` with count of pending requests.
 Or you can wrap your get requests into `reatomResource` and refetch data whenever some of parameters change.
 
-> included in [@reatom/framework](/package/framework)
+> included in [@reatom/framework](/packages/framework)
 
 To chose the most appropriate async primitive refer to the table below:
 
@@ -25,7 +25,7 @@ You could utilize extra features by piping additional operators: [withDataAtom](
 
 Base `reatomAsync` weight is just [1.2KB](https://bundlejs.com/?q=%40reatom%2Fasync&treeshake=%5B%7B+reatomAsync+%7D%5D) and the whole package is only [2.6KB](https://bundlejs.com/?q=%40reatom%2Fasync)!
 
-As the main point of this package is general management of async functions, there is no built in solution for data requests in the web or other environment. Fill free to use any existing library, like tiny [redaxios](https://www.npmjs.com/package/redaxios) or feature-rich [axios](https://www.npmjs.com/package/axios).
+As the main point of this package is general management of async functions, there is no built in solution for data requests in the web or other environment. Fill free to use any existing library, like tiny [redaxios](https://www.npmjs.com/packages/redaxios) or feature-rich [axios](https://www.npmjs.com/packages/axios).
 
 ### Default request helper
 
@@ -227,7 +227,7 @@ export const fetchList = reatomAsync(
 onConnect(fetchList.dataAtom, fetchList)
 ```
 
-What this code do? When you connect to `fetchList.dataAtom` it will automatically call `fetchList` action. Connection could appear in any place of your application, by `ctx.subscribe(fetchList.dataAtom, cb)` or by using `useAtom(fetchList.dataAtom)` hook from [@reatom/npm-react](/package/npm-react). Even by a different atom.
+What this code do? When you connect to `fetchList.dataAtom` it will automatically call `fetchList` action. Connection could appear in any place of your application, by `ctx.subscribe(fetchList.dataAtom, cb)` or by using `useAtom(fetchList.dataAtom)` hook from [@reatom/npm-react](/packages/npm-react). Even by a different atom.
 
 ```ts
 export const filteredListAtom = atom(
@@ -288,7 +288,7 @@ export const updateList = reatomAsync(
 )
 ```
 
-For more details of optimistic update check the story tests in [the sources](https://github.com/artalar/reatom/blob/v3/packages/async/src/index.story.test.ts) or in [the end of this doc](/package/async#story-test).
+For more details of optimistic update check the story tests in [the sources](https://github.com/artalar/reatom/blob/v3/packages/async/src/index.story.test.ts) or in [the end of this doc](/packages/async#story-test).
 
 ### Custom dataAtom
 
@@ -400,7 +400,7 @@ export type AsyncStatuses =
 
 This is the most famous feature of any resource management. You are not required to use `withDataAtom`, the cache worked for effect results, but if `dataAtom` exists - it will worked as well and you could react on data changes immediately.
 
-This operator adds `cacheAtom` property which is `MapAtom` from [@reatom/primitives](/package/primitives#reatommap) and contains the cache of effect results. Do not change it manually! But you could use `reset` action to clear the cache. Also `cacheAtom` contains `invalidate` action which clears all existed cache and call new fetch with the last payload.
+This operator adds `cacheAtom` property which is `MapAtom` from [@reatom/primitives](/packages/primitives#reatommap) and contains the cache of effect results. Do not change it manually! But you could use `reset` action to clear the cache. Also `cacheAtom` contains `invalidate` action which clears all existed cache and call new fetch with the last payload.
 
 `withCache` adds `swrPendingAtom` which is relative to `swr` option (see above).
 
@@ -411,12 +411,12 @@ You could rule the cache behavior by set of optional parameters.
 - **length** - maximum amount of cache records. Default is `5`.
 - **staleTime** - the amount of milliseconds after which a cache record will cleanup. Default is `5 * 60 * 1000`ms which is 5 minutes.
 - **paramsLength** - the number of excepted parameters, which will used as a cache key. Default is "all".
-- **isEqual** - check the equality of a cache record and passed params to find the cache. Default is `isDeepEqual` from [@reatom/utils](/package/utils).
+- **isEqual** - check the equality of a cache record and passed params to find the cache. Default is `isDeepEqual` from [@reatom/utils](/packages/utils).
 - **paramsToKey** - convert params to a string as a key of the cache map. Not used by default, equality check (`isEqual`) is used instead. This option is useful if you have a complex object as a params which equality check is too expensive, or you was set large `length` option and want to speed up the cache search.
-  > You could import and use [toStringKey](/package/utils#tostringkey) function from the utils package for this purposes.
+  > You could import and use [toStringKey](/packages/utils#tostringkey) function from the utils package for this purposes.
 - **swr** - enable [stale while revalidate](https://web.dev/stale-while-revalidate/) pattern. Default is `true`. It allow to return the cached data immediately (if exist) and run extra fetch for the fresh data on the background. Success SWR fetch will call `onFulfill` to force new data for `dataAtom`, you could change this behavior by `swr: { shouldFulfill: false }`, in this case the SWR logic is just a background silent synchronization to speedup a next fetch. There also two additional options, which is `false` by default: `shouldReject` and `shouldPending`.
   `withCache` adds `swrPendingAtom` to passed async
-- **withPersist** - `WithPersist` instance from one of the adapter of [@reatom/persist](/package/persist). It will used with predefined optimal parameters for internal Map (de)serialization and so on.
+- **withPersist** - `WithPersist` instance from one of the adapter of [@reatom/persist](/packages/persist). It will used with predefined optimal parameters for internal Map (de)serialization and so on.
 - **ignoreAbort** - define if the effect should be prevented from abort. The outer abort strategy is not affected, which means that all hooks and returned promise will behave the same. But the effect execution could be continued even if abort appears, to save the result in the cache. Default is `true`.
 
 ```ts
@@ -510,7 +510,7 @@ export const updateElement = reatomAction(async (ctx, id, data) => {
 
 ### Sync cache
 
-You could persist the cache for a chosen time and sync it across a tabs by `withLocalStorage` from [@reatom/persist-web-storage](/package/persist-web-storage). You could use `withSessionStorage` if you need only synchronization.
+You could persist the cache for a chosen time and sync it across a tabs by `withLocalStorage` from [@reatom/persist-web-storage](/packages/persist-web-storage). You could use `withSessionStorage` if you need only synchronization.
 
 ```ts
 import { reatomAsync, withCache } from '@reatom/async'
@@ -777,7 +777,7 @@ export const isFetchListLoading = atom(
 
 ### Periodic refresh for used data
 
-Do you need to implement a **pooling** pattern to stay your data fresh? Lets use `onConnect` from [@reatom/hooks](/package/hooks) to control the neediness of this.
+Do you need to implement a **pooling** pattern to stay your data fresh? Lets use `onConnect` from [@reatom/hooks](/packages/hooks) to control the neediness of this.
 
 ```ts
 import {
@@ -868,7 +868,7 @@ onConnect(fetchList.dataAtom, (ctx) => {
 
 In this case, the `fetchList` could be called with parameters, and each new request will cancel the previous one. Also, when the user leaves the page and the `dataAtom` becomes disconnected, the last request will be canceled too.
 
-Check the real-world example in pooling example from [story tests below](/package/async#story-test) ([src](https://github.com/artalar/reatom/blob/v3/packages/async/src/index.story.test.ts)).
+Check the real-world example in pooling example from [story tests below](/packages/async#story-test) ([src](https://github.com/artalar/reatom/blob/v3/packages/async/src/index.story.test.ts)).
 
 ## reatomResource
 
@@ -921,7 +921,7 @@ const listResource = reatomResource(async (ctx) => {
 
 That's all. The code becomes much cleaner and simpler! The only additional change is the need for `ctx.schedule` for effects, as the callback in the `reatomResource` is called in the pure computations queue (to make `spy` work).
 
-Also, `listResource` now has a `promiseAtom` that contains the last promise. You can use it with [useAtomPromise](/package/npm-react/#use-atom-promise) in a React application, for example.
+Also, `listResource` now has a `promiseAtom` that contains the last promise. You can use it with [useAtomPromise](/packages/npm-react/#use-atom-promise) in a React application, for example.
 
 If you need to set up a default value and use it synchronously, simply use `withDataAtom` as you would with any other async action. All async operators work fine with `reatomResource`. You could use `withRetry` and even `withCache`!
 

@@ -5,7 +5,7 @@ description: The ultimate state manager
 
 Tiny, efficient, featured, and extensible core to handle reactivity right. The ultimate state manager. Build anything, from a small widget to a huge application.
 
-> included in [@reatom/framework](/package/framework)
+> included in [@reatom/framework](/packages/framework)
 
 [Main introduction](/).
 
@@ -39,7 +39,7 @@ export const ctx = createCtx()
 
 All atoms and actions accept `ctx` as their first argument to match and process all data inside it. It assists you greatly in many areas: testing, debugging, SSR, effects chain management, and logging. It is the **most powerful** feature of Reatom and is indispensable in complex scenarios. And it only requires three extra letters for each function call - super efficient!
 
-As the entire data processing flows through the context, you can easily inspect it: `ctx.subscribe(logs => console.log(logs))` or connect a separate [logger](/package/logger) to view all changes in your app with proper formatting.
+As the entire data processing flows through the context, you can easily inspect it: `ctx.subscribe(logs => console.log(logs))` or connect a separate [logger](/packages/logger) to view all changes in your app with proper formatting.
 
 Now, let's outline some logic.
 
@@ -119,7 +119,7 @@ document.getElementById('search-input').addEventListener('input', (event) => {
 })
 ```
 
-> Do you want to see [the docs for React adapter](/package/npm-react) next?
+> Do you want to see [the docs for React adapter](/packages/npm-react) next?
 
 ## Action handling (advanced)
 
@@ -172,7 +172,7 @@ import { atom } from '@reatom/core'
 
 The `atom()` function is a factory for an atomic-based reactive primitive. Atoms don't store their data (state, listeners, dependencies) within themselves; they only provide a key to a cache in [ctx](#ctx-api) (context). You can think of an atom as a prototype for a cache. One of the most powerful features of Reatom is that the cache is immutable, and it is recreated on each relative update. The immutability of the cache helps to process [transactions](#ctxschedule) and is extremely useful for debugging. Don't worry, it is also quite [efficient](/#how-performant-reatom-is).
 
-As Atom is a key, it should be mapped somewhere to its cache. `ctx` has an internal [WeakMap](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap) `caches`, which store your data until there is a link to Atom. When you subscribe (connect) and unsubscribe (disconnect) from Atom, the state isn't reset or deleted; it is still stored in the cache, which will be cleared by the GC only after the link to the Atom disappears from your closures. This behavior is the most intuitive and works just like any variable storing. So, if you define a global Atom available in a few of your modules, the state will always persist in memory during the application lifetime, whether you subscribed or unsubscribed for the Atom, which is useful. If you need to clear the state on disconnect or do other lifetime transformations, check the [hooks package](/package/hooks) and [withreset](/package/lens#withreset) helper.
+As Atom is a key, it should be mapped somewhere to its cache. `ctx` has an internal [WeakMap](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap) `caches`, which store your data until there is a link to Atom. When you subscribe (connect) and unsubscribe (disconnect) from Atom, the state isn't reset or deleted; it is still stored in the cache, which will be cleared by the GC only after the link to the Atom disappears from your closures. This behavior is the most intuitive and works just like any variable storing. So, if you define a global Atom available in a few of your modules, the state will always persist in memory during the application lifetime, whether you subscribed or unsubscribed for the Atom, which is useful. If you need to clear the state on disconnect or do other lifetime transformations, check the [hooks package](/packages/hooks) and [withreset](/packages/lens#withreset) helper.
 
 If you need to create a base mutable atom, just pass the initial value to `atom`. Pass the atom name as a second argument (it is optional but strongly recommended). The resulted atom will be mutable (`Mut`) with a callable signature (a function); you can mutate it by passing a context and a new value or a reducer function.
 
@@ -281,7 +281,7 @@ const countAtom = withInit(() => localStorage.getItem('COUNT') ?? 0)(atom(0))
 
 > `withInit` allows you to configure the initial state of the atom reading, which is sometimes more predictable and safer for testing.
 
-Operator `with` prefix mean that the target atom will be changed somehow and the returned reference will the same. [reatom/async](/package/async) uses operators a lot to configure the behavior of the effect by composition, which is good for tree-shaking. Check naming conventions and more examples in [this guide](/recipes/custom-operator/)
+Operator `with` prefix mean that the target atom will be changed somehow and the returned reference will the same. [reatom/async](/packages/async) uses operators a lot to configure the behavior of the effect by composition, which is good for tree-shaking. Check naming conventions and more examples in [this guide](/recipes/custom-operator/)
 
 Btw, actions has `pipe` too!
 
@@ -384,7 +384,7 @@ A context creation function accepts a few optional parameters that you probably 
 - `callNearEffect` - Use it to delay or track near effects such as API calls
 - `restrictMultipleContexts` - Mange multiple contexts warning
 
-The call effect handlers by default wrap all effects with a `catch` handler that converts the thrown value to `Error` instance to save the callstack for better debugging, and it does `setTimeout(() => { throw err })` to trigger a global handler of an uncaught error. The `setTimeout` behavior is modified in `createTestCtx` from [testing package](/package/testing/).
+The call effect handlers by default wrap all effects with a `catch` handler that converts the thrown value to `Error` instance to save the callstack for better debugging, and it does `setTimeout(() => { throw err })` to trigger a global handler of an uncaught error. The `setTimeout` behavior is modified in `createTestCtx` from [testing package](/packages/testing/).
 
 The `restrictMultipleContexts` option, which is `true` by default, will log a "multiple contexts detected" warning to the console when a few `createCtx` occur in a browser environment. We highly recommend [deduping all your packages](/recipes/faq) and using only one instance of each reatom package to archive the stability of all features.
 

@@ -3,10 +3,10 @@ title: Custom operator
 description: How to create custom operators to improve your code and modularize it
 ---
 
-All atoms and actions by default include the [pipe operator](/package/core#atompipe-api) for easy extending and composing.
+All atoms and actions by default include the [pipe operator](/packages/core#atompipe-api) for easy extending and composing.
 You can create your own operators to enhance your code and make it more modular.
 
-We assume that you've already read the [core](/package/core) docs.
+We assume that you've already read the [core](/packages/core) docs.
 
 ## Prefix and types
 
@@ -21,7 +21,7 @@ declare function mapState<T, Res>(
 ): (anAtom: Atom<T>) => Atom<Res>
 ```
 
-> [Real `mapState`](/package/lens#mapstate)
+> [Real `mapState`](/packages/lens#mapstate)
 
 If an operator doesn't create a new atom and instead mutates the passed one, you should use the `with` prefix.
 
@@ -37,7 +37,7 @@ declare function withStateHistory<T extends Atom>(
 
 We use `T extends Atom` instead of the simpler `<T>(length: string): (anAtom: Atom<T>) => Atom<T> & {...}` to preserve all additional properties added by previous operators.
 
-> [Real `historyAtom`](/package/undo)
+> [Real `historyAtom`](/packages/undo)
 
 ## Example
 
@@ -59,7 +59,7 @@ export const delay =
 
     return atom((ctx, prevState?: T) => {
       const state = ctx.spy(anAtom)
-      // more about action spying: https://www.reatom.dev/package/core#action-api
+      // more about action spying: https://www.reatom.dev/packages/core#action-api
       const updates = ctx.spy(update)
 
       // first call, no need to delay
@@ -80,13 +80,13 @@ export const delay =
   }
 ```
 
-> [Real `debounce`](https://www.reatom.dev/package/lens#debounce)
+> [Real `debounce`](https://www.reatom.dev/packages/lens#debounce)
 
 ## Advanced example
 
 This example demonstrates complexity of **hot**ness and **cold**ness of reactive nodes.
 
-Let's break down the implementation of `withReadyAtom` for [@reatom/async](/package/async/). That'll be cool!
+Let's break down the implementation of `withReadyAtom` for [@reatom/async](/packages/async/). That'll be cool!
 
 First, take a look to the result, then we will disassemble this code step by step:
 
@@ -132,7 +132,7 @@ return <Data />
 
 The native `pendingAtom` is not very useful here because it's 0 by default, and we'll get a flash of empty content instead of a neat loader during the first render.
 
-Let's start by defining a generic variable which should have an optional `dataAtom`. Otherwise, we'll have to use @ts-ignore to access this atom. We need this atom to trigger a connection, with something like `onConnect(fetchSome.dataAtom, fetchSome)` a [resource](/package/async/#reatomresource). Without this, we'll never touch `dataAtom`, thus never trigger fetch and get stuck in a forever-loading state.
+Let's start by defining a generic variable which should have an optional `dataAtom`. Otherwise, we'll have to use @ts-ignore to access this atom. We need this atom to trigger a connection, with something like `onConnect(fetchSome.dataAtom, fetchSome)` a [resource](/packages/async/#reatomresource). Without this, we'll never touch `dataAtom`, thus never trigger fetch and get stuck in a forever-loading state.
 
 Then let's `spy` the `pendingAtom`, but we use its value only on the second and following reads of `readyAtom`. If it's the first read, we just show the initial state.
 

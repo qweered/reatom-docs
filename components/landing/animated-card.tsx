@@ -11,7 +11,7 @@ interface AnimatedCardProps {
   className?: string
 }
 
-export default function AnimatedCard({ children, className }: AnimatedCardProps) {
+export function AnimatedCard({ children, className }: AnimatedCardProps) {
   const [position, setPosition] = useState({ x: 0, y: 0 })
   const [isHovering, setIsHovering] = useState(false)
 
@@ -42,7 +42,7 @@ export default function AnimatedCard({ children, className }: AnimatedCardProps)
       }}
     >
       <Card
-        className={cn("bg-zinc-900/50 border-white/10 hover:border-primary/50 transition-all duration-300", className)}
+        className={cn("bg-zinc-900/50 border-white/10 hover:border-white/50 transition-all duration-300", className)}
         style={{
           transform: `rotateX(${position.y}deg) rotateY(${position.x}deg)`,
           transition: isHovering ? "transform 0.1s ease-out" : "transform 0.3s ease-out",
@@ -51,7 +51,7 @@ export default function AnimatedCard({ children, className }: AnimatedCardProps)
         <CardContent className="p-6 relative z-10">{children}</CardContent>
       </Card>
       <div
-        className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/20 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg -z-10 blur-xl"
+        className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg -z-10 blur-xl"
         style={{
           transform: `translateX(${position.x * 2}px) translateY(${position.y * 2}px)`,
         }}

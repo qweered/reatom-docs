@@ -23,9 +23,8 @@ import { ThemeToggle } from 'fumadocs-ui/components/layout/theme-toggle';
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { SpeedParticlesExtreme, AnimatedGradientText, CodeBlock, ComparisonSection } from "@/components/landing"
+import { SpeedParticles, AnimatedGradientText, AnimatedCard, CodeBlock, ComparisonSection } from "@/components/landing"
 
-import AnimatedCardBW from "@/components/animated-card-bw"
 
 export default function Home() {
   return (
@@ -78,7 +77,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative overflow-hidden py-24 md:py-32 lg:py-40 bg-background text-foreground">
         <div className="absolute inset-0 -z-10">
-          <SpeedParticlesExtreme />
+          <SpeedParticles />
         </div>
         <div className="container relative z-10">
           <div className="flex flex-col items-center text-center">
@@ -145,7 +144,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <AnimatedCardBW>
+            <AnimatedCard>
               <div className="bg-white/10 p-3 rounded-lg w-fit mb-4 group-hover:bg-white/20 transition-colors">
                 <Code className="h-6 w-6 text-white" />
               </div>
@@ -153,9 +152,9 @@ export default function Home() {
               <p className="text-zinc-400">
                 Only three main primitives: ctx, atom, action. All other features and packages work on top of that.
               </p>
-            </AnimatedCardBW>
+            </AnimatedCard>
 
-            <AnimatedCardBW>
+            <AnimatedCard>
               <div className="bg-white/10 p-3 rounded-lg w-fit mb-4 group-hover:bg-white/20 transition-colors">
                 <Lock className="h-6 w-6 text-white" />
               </div>
@@ -163,9 +162,9 @@ export default function Home() {
               <p className="text-zinc-400">
                 All pure computations processed with atomicity guarantees for maximum reliability.
               </p>
-            </AnimatedCardBW>
+            </AnimatedCard>
 
-            <AnimatedCardBW>
+            <AnimatedCard>
               <div className="bg-white/10 p-3 rounded-lg w-fit mb-4 group-hover:bg-white/20 transition-colors">
                 <Gauge className="h-6 w-6 text-white" />
               </div>
@@ -173,9 +172,9 @@ export default function Home() {
               <p className="text-zinc-400">
                 No proxies. We use the atomization pattern to achieve maximum performance.
               </p>
-            </AnimatedCardBW>
+            </AnimatedCard>
 
-            <AnimatedCardBW>
+            <AnimatedCard>
               <div className="bg-white/10 p-3 rounded-lg w-fit mb-4 group-hover:bg-white/20 transition-colors">
                 <Workflow className="h-6 w-6 text-white" />
               </div>
@@ -183,9 +182,9 @@ export default function Home() {
               <p className="text-zinc-400">
                 Advanced async package for complex flows, including caching, retrying and automatic cancellation.
               </p>
-            </AnimatedCardBW>
+            </AnimatedCard>
 
-            <AnimatedCardBW>
+            <AnimatedCard>
               <div className="bg-white/10 p-3 rounded-lg w-fit mb-4 group-hover:bg-white/20 transition-colors">
                 <Sparkles className="h-6 w-6 text-white" />
               </div>
@@ -193,9 +192,9 @@ export default function Home() {
               <p className="text-zinc-400">
                 Each atom and action updates the ctx&apos;s immutable cause stack, helping debug complex async flows.
               </p>
-            </AnimatedCardBW>
+            </AnimatedCard>
 
-            <AnimatedCardBW>
+            <AnimatedCard>
               <div className="bg-white/10 p-3 rounded-lg w-fit mb-4 group-hover:bg-white/20 transition-colors">
                 <Database className="h-6 w-6 text-white" />
               </div>
@@ -203,7 +202,7 @@ export default function Home() {
               <p className="text-zinc-400">
                 Alternative to TanStack Query with automatic caching, retrying, and dependency tracking out of the box.
               </p>
-            </AnimatedCardBW>
+            </AnimatedCard>
           </div>
         </div>
       </section>
@@ -412,7 +411,7 @@ const userDetailsQuery = createQuery(async (ctx) => {
           </Tabs>
 
           <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <AnimatedCardBW>
+            <AnimatedCard>
               <h3 className="text-xl font-bold mb-4">Smallest Bundle Size</h3>
               <p className="text-zinc-400 mb-4">
                 Only 2KB gzipped for the core package. The entire ecosystem with enterprise-level helpers takes only
@@ -422,9 +421,9 @@ const userDetailsQuery = createQuery(async (ctx) => {
                 <Package className="h-4 w-4" />
                 <span className="text-sm font-medium">2KB Core / 15KB Full</span>
               </div>
-            </AnimatedCardBW>
+            </AnimatedCard>
 
-            <AnimatedCardBW>
+            <AnimatedCard>
               <h3 className="text-xl font-bold mb-4">TypeScript First</h3>
               <p className="text-zinc-400 mb-4">
                 Perfect type inference is one of our main priorities. Get autocomplete and type checking for all your
@@ -434,9 +433,9 @@ const userDetailsQuery = createQuery(async (ctx) => {
                 <Code className="h-4 w-4" />
                 <span className="text-sm font-medium">100% Type Safe</span>
               </div>
-            </AnimatedCardBW>
+            </AnimatedCard>
 
-            <AnimatedCardBW>
+            <AnimatedCard>
               <h3 className="text-xl font-bold mb-4">Framework Agnostic</h3>
               <p className="text-zinc-400 mb-4">
                 Works with any UI framework. First-class bindings for React, Vue, Svelte, and more.
@@ -445,7 +444,7 @@ const userDetailsQuery = createQuery(async (ctx) => {
                 <Layers className="h-4 w-4" />
                 <span className="text-sm font-medium">Use Anywhere</span>
               </div>
-            </AnimatedCardBW>
+            </AnimatedCard>
           </div>
         </div>
       </section>
@@ -590,7 +589,7 @@ userIdAtom(ctx, '3') // Previous request cancelled, new one started`}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <AnimatedCardBW>
+            <AnimatedCard>
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
                   <span className="text-white font-bold">AJ</span>
@@ -604,9 +603,9 @@ userIdAtom(ctx, '3') // Previous request cancelled, new one started`}
                 Reatom has completely changed how I think about state management. The explicit reactivity model makes
                 complex state flows easy to reason about, and the TypeScript support is incredible.
               </p>
-            </AnimatedCardBW>
+            </AnimatedCard>
 
-            <AnimatedCardBW>
+            <AnimatedCard>
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
                   <span className="text-white font-bold">MG</span>
@@ -621,9 +620,9 @@ userIdAtom(ctx, '3') // Previous request cancelled, new one started`}
                 applications. We&apos;ve seen significant improvements in both developer productivity and application
                 performance.
               </p>
-            </AnimatedCardBW>
+            </AnimatedCard>
 
-            <AnimatedCardBW>
+            <AnimatedCard>
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
                   <span className="text-white font-bold">DK</span>
@@ -638,7 +637,7 @@ userIdAtom(ctx, '3') // Previous request cancelled, new one started`}
                 cause stack makes tracking down bugs trivial, and the async utilities save me hours of boilerplate
                 code.
               </p>
-            </AnimatedCardBW>
+            </AnimatedCard>
           </div>
         </div>
       </section>
@@ -646,7 +645,7 @@ userIdAtom(ctx, '3') // Previous request cancelled, new one started`}
       {/* CTA Section */}
       <section className="py-24 border-t border-white/10 relative overflow-hidden">
         <div className="absolute inset-0 -z-10">
-          <SpeedParticlesExtreme />
+          <SpeedParticles />
         </div>
         <div className="container relative z-10 text-center space-y-8">
           <AnimatedGradientText className="text-3xl md:text-5xl font-bold tracking-tight max-w-3xl mx-auto">

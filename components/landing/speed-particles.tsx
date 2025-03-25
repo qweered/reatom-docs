@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react"
 
-export function SpeedParticlesExtreme() {
+export function SpeedParticles() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {

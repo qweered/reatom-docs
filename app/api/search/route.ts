@@ -7,4 +7,5 @@ import { createFromSource } from 'fumadocs-core/search/server';
  
 // export const { staticGET: GET } = createFromSource(source);
 
+// TODO: add debounce, right now it searches on each key stroke
 export const { GET } = createFromSource(source);

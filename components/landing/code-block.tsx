@@ -9,7 +9,7 @@ interface CodeBlockProps {
   className?: string
 }
 
-export default function CodeBlock({ code, language, className }: CodeBlockProps) {
+export function CodeBlock({ code, language, className }: CodeBlockProps) {
   const preRef = useRef<HTMLPreElement>(null)
 
   useEffect(() => {

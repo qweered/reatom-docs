@@ -10,7 +10,7 @@ interface AnimatedGradientTextProps {
   className?: string
 }
 
-export default function AnimatedGradientText({ children, className }: AnimatedGradientTextProps) {
+export function AnimatedGradientText({ children, className }: AnimatedGradientTextProps) {
   const textRef = useRef<HTMLHeadingElement>(null)
 
   useEffect(() => {

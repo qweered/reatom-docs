@@ -18,16 +18,14 @@ import {
   Database,
 } from "lucide-react"
 
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import SpeedParticlesExtreme from "@/components/speed-particles-extreme"
-import CodeBlock from "@/components/code-block"
-import AnimatedGradientText from "@/components/landing/animated-gradient-text"
-import AnimatedCardBW from "@/components/animated-card-bw"
-import AnimatedComparisonRow from "@/components/animated-comparison-row"
-import { Badge } from "@/components/ui/badge"
 import { SearchToggle } from 'fumadocs-ui/components/layout/search-toggle';
 import { ThemeToggle } from 'fumadocs-ui/components/layout/theme-toggle';
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { SpeedParticlesExtreme, AnimatedGradientText, CodeBlock, ComparisonSection } from "@/components/landing"
+
+import AnimatedCardBW from "@/components/animated-card-bw"
 
 export default function Home() {
   return (
@@ -94,7 +92,7 @@ export default function Home() {
               Simple, powerful, and blazingly fast state management for modern JavaScript applications. Only 2KB gzipped
               with the best TypeScript experience.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex gap-4">
               <Link href="/docs/getting-started" passHref>
                 <Button
                   size="lg"
@@ -210,89 +208,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Comparison Section */}
-      <section id="comparison" className="py-24 border-t border-white/10 bg-gradient-to-b from-black to-zinc-950">
-        <div className="container">
-          <div className="text-center space-y-4 mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Why Choose Reatom?</h2>
-            <p className="text-zinc-400 text-lg max-w-[700px] mx-auto">
-              See how Reatom compares to other popular state management solutions.
-            </p>
-          </div>
-
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse">
-              <thead>
-                <tr className="border-b border-white/10">
-                  <th className="py-4 px-6 text-left">Feature</th>
-                  <th className="py-4 px-6 text-center">Reatom</th>
-                  <th className="py-4 px-6 text-center">Redux</th>
-                  <th className="py-4 px-6 text-center">MobX</th>
-                  <th className="py-4 px-6 text-center">Zustand</th>
-                </tr>
-              </thead>
-              <tbody>
-                <AnimatedComparisonRow
-                  feature="Bundle Size"
-                  reatom="2KB"
-                  redux="16KB+"
-                  mobx="22KB+"
-                  zustand="3KB+"
-                  isReatom={true}
-                />
-                <AnimatedComparisonRow
-                  feature="TypeScript Support"
-                  reatom="Excellent"
-                  redux="Good"
-                  mobx="Good"
-                  zustand="Good"
-                  isReatom={true}
-                />
-                <AnimatedComparisonRow
-                  feature="Async Handling"
-                  reatom="Built-in"
-                  redux="Middleware"
-                  mobx="Manual"
-                  zustand="Manual"
-                  isReatom={true}
-                />
-                <AnimatedComparisonRow
-                  feature="Debugging"
-                  reatom="DevTools + Cause Stack"
-                  redux="Console + DevTools"
-                  mobx="Console + DevTools"
-                  zustand="Console + DevTools"
-                  isReatom={true}
-                />
-                <AnimatedComparisonRow
-                  feature="Reactivity Model"
-                  reatom="Explicit"
-                  redux="Manual"
-                  mobx="Proxies"
-                  zustand="Subscriptions"
-                  isReatom={true}
-                />
-                <AnimatedComparisonRow
-                  feature="Data Fetching"
-                  reatom="Built-in"
-                  redux="External"
-                  mobx="External"
-                  zustand="External"
-                  isReatom={true}
-                />
-                <AnimatedComparisonRow
-                  feature="Dependency Tracking"
-                  reatom="Automatic"
-                  redux="Manual"
-                  mobx="Automatic"
-                  zustand="Manual"
-                  isReatom={true}
-                />
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
+      {/* Comparison Section - Now using the refactored component */}
+      <ComparisonSection />
 
       {/* Code Examples Section */}
       <section id="code" className="py-24 border-t border-white/10">

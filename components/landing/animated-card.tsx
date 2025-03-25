@@ -1,64 +1,53 @@
 'use client'
 
-import type React from 'react'
-
-import { useState } from 'react'
-import { Card, CardContent } from '@/components/ui/card'
+import { useRef, RefObject } from 'react'
+import type { ReactNode } from 'react'
+import { useIntersectionAnimation } from '@/components/hooks/use-intersection-animation'
 import { cn } from '@/lib/utils'
 
 interface AnimatedCardProps {
-  children: React.ReactNode
+  icon?: ReactNode
+  title?: string
+  description?: string
+  children?: ReactNode
   className?: string
 }
 
-export function AnimatedCard({ children, className }: AnimatedCardProps) {
-  const [position, setPosition] = useState({ x: 0, y: 0 })
-  const [isHovering, setIsHovering] = useState(false)
+export function AnimatedCard({ icon, title, description, children, className }: AnimatedCardProps) {
+  const cardRef = useRef<HTMLDivElement>(null)
+  useIntersectionAnimation(cardRef as unknown as RefObject<HTMLElement>)
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isHovering) return
-
-    const rect = e.currentTarget.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-
-    const centerX = rect.width / 2
-    const centerY = rect.height / 2
-
-    const moveX = (x - centerX) / 20
-    const moveY = (y - centerY) / 20
-
-    setPosition({ x: moveX, y: moveY })
-  }
-
-  return (
-    <div
-      className="group perspective-1000 relative"
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovering(true)}
-      onMouseLeave={() => {
-        setIsHovering(false)
-        setPosition({ x: 0, y: 0 })
-      }}
-    >
-      <Card
+  // If children are provided, render them directly
+  if (children) {
+    return (
+      <div
+        ref={cardRef}
         className={cn(
-          'border-white/10 bg-zinc-900/50 transition-all duration-300 hover:border-white/50',
+          'group translate-y-4 rounded-lg border border-white/10 bg-white/5 p-6 opacity-0 transition-all duration-300 hover:bg-white/10',
           className
         )}
-        style={{
-          transform: `rotateX(${position.y}deg) rotateY(${position.x}deg)`,
-          transition: isHovering ? 'transform 0.1s ease-out' : 'transform 0.3s ease-out'
-        }}
       >
-        <CardContent className="relative z-10 p-6">{children}</CardContent>
-      </Card>
-      <div
-        className="absolute inset-0 -z-10 rounded-lg bg-gradient-to-r from-white/0 via-white/20 to-white/0 opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-100"
-        style={{
-          transform: `translateX(${position.x * 2}px) translateY(${position.y * 2}px)`
-        }}
-      />
+        {children}
+      </div>
+    )
+  }
+
+  // Otherwise, render with the structured props
+  return (
+    <div
+      ref={cardRef}
+      className={cn(
+        'group translate-y-4 rounded-lg border border-white/10 bg-white/5 p-6 opacity-0 transition-all duration-300 hover:bg-white/10',
+        className
+      )}
+    >
+      {icon && (
+        <div className="mb-4 w-fit rounded-lg bg-white/10 p-3 transition-colors group-hover:bg-white/20">
+          {icon}
+        </div>
+      )}
+      {title && <h3 className="mb-2 text-xl font-bold">{title}</h3>}
+      {description && <p className="text-zinc-400">{description}</p>}
     </div>
   )
 }

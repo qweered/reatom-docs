@@ -93,7 +93,7 @@ export default function Home() {
               with the best TypeScript experience.
             </p>
             <div className="flex gap-4">
-              <Link href="/docs/getting-started" passHref>
+              <Link href="/docs/getting-started/setup" passHref>
                 <Button
                   size="lg"
                   className="rounded-full gap-2 px-8 animate-pulse hover:animate-none text-background hover:bg-foreground/80"
@@ -657,7 +657,7 @@ userIdAtom(ctx, '3') // Previous request cancelled, new one started`}
             safety.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link href="https://v3.reatom.dev/getting-started" passHref>
+            <Link href="/getting-started/setup" passHref>
               <Button
                 size="lg"
                 className="rounded-full gap-2 px-8 animate-pulse hover:animate-none bg-white text-black hover:bg-zinc-200"
@@ -710,7 +710,7 @@ userIdAtom(ctx, '3') // Previous request cancelled, new one started`}
               <ul className="space-y-2">
                 <li>
                   <Link
-                    href="https://v3.reatom.dev/getting-started"
+                    href="/getting-started/setup"
                     className="text-zinc-400 hover:text-white transition-colors"
                   >
                     Getting Started

@@ -13,9 +13,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           <RootToggle
             options={[
               { title: 'v4', description: 'Current version', url: '/docs' },
-              { title: 'v3', description: 'Previous version', url: 'https://reatom.dev' },
-              { title: 'v2', description: 'Old version', url: 'https://reatom.dev' },
-              { title: 'v1', description: 'Old version', url: 'https://reatom.dev' },
+              { title: 'v3', description: 'LTS version', url: 'https://reatom.dev' },
             ]}
           />
         ),

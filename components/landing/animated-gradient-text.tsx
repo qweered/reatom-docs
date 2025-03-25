@@ -1,9 +1,9 @@
-"use client"
+'use client'
 
-import type React from "react"
+import type React from 'react'
 
-import { useEffect, useRef } from "react"
-import { cn } from "@/lib/utils"
+import { useEffect, useRef } from 'react'
+import { cn } from '@/lib/utils'
 
 interface AnimatedGradientTextProps {
   children: React.ReactNode
@@ -40,12 +40,11 @@ export function AnimatedGradientText({ children, className }: AnimatedGradientTe
     <h1
       ref={textRef}
       className={cn(
-        "bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500 dark:from-cyan-400 dark:via-indigo-500 dark:to-purple-500 bg-[length:200%_auto] bg-clip-text text-transparent",
-        className,
+        'bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500 bg-[length:200%_auto] bg-clip-text text-transparent dark:from-cyan-400 dark:via-indigo-500 dark:to-purple-500',
+        className
       )}
     >
       {children}
     </h1>
   )
 }
-

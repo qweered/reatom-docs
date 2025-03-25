@@ -1,6 +1,6 @@
-"use client"
+'use client'
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef } from 'react'
 
 export function SpeedParticles() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -9,7 +9,7 @@ export function SpeedParticles() {
     const canvas = canvasRef.current
     if (!canvas) return
 
-    const ctx = canvas.getContext("2d")
+    const ctx = canvas.getContext('2d')
     if (!ctx) return
 
     // Set canvas to full window size
@@ -19,7 +19,7 @@ export function SpeedParticles() {
     }
 
     resizeCanvas()
-    window.addEventListener("resize", resizeCanvas)
+    window.addEventListener('resize', resizeCanvas)
 
     // Create particles
     const particles: {
@@ -44,14 +44,14 @@ export function SpeedParticles() {
         speedY: (Math.random() - 0.5) * 2, // Small vertical movement
         alpha: Math.random() * 0.8 + 0.2,
         trail: Math.random() * 30 + 15,
-        direction: Math.random() > 0.1 ? -1 : 1, // Mostly left, some right
+        direction: Math.random() > 0.1 ? -1 : 1 // Mostly left, some right
       })
     }
 
     // Animation loop
     const animate = () => {
       // Semi-transparent clear for trail effect
-      ctx.fillStyle = "rgba(0, 0, 0, 0.1)"
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.1)'
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
       // Update and draw particles
@@ -84,10 +84,9 @@ export function SpeedParticles() {
     animate()
 
     return () => {
-      window.removeEventListener("resize", resizeCanvas)
+      window.removeEventListener('resize', resizeCanvas)
     }
   }, [])
 
   return <canvas ref={canvasRef} className="absolute inset-0 -z-10" />
 }
-

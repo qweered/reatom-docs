@@ -3,31 +3,15 @@ title: Testing
 description: Explaining how to test reatom code
 ---
 
-import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs'
 
 The first thing you need to do is install the test helpers.
 
 <Tabs groupId="package-manager" items={['npm', 'yarn', 'pnpm', 'bun']} persist>
-  <Tab value="npm">
-    ```bash
-    npm install @reatom/testing
-    ```
-  </Tab>
-  <Tab value="yarn">
-    ```bash
-    yarn add @reatom/testing
-    ```
-  </Tab>
-  <Tab value="pnpm">
-    ```bash
-    pnpm add @reatom/testing
-    ```
-  </Tab>
-  <Tab value="bun">
-    ```bash
-    bun add @reatom/testing
-    ```
-  </Tab>
+  <Tab value="npm">```bash npm install @reatom/testing ```</Tab>
+  <Tab value="yarn">```bash yarn add @reatom/testing ```</Tab>
+  <Tab value="pnpm">```bash pnpm add @reatom/testing ```</Tab>
+  <Tab value="bun">```bash bun add @reatom/testing ```</Tab>
 </Tabs>
 
 Let's test this code:
@@ -79,9 +63,7 @@ export const todoAtom = atom(null)
 export const isLoadingAtom = atom(false)
 
 export const fetchTodo = action(async (ctx) => {
-  const response = await ctx.schedule(() =>
-    fetch('https://jsonplaceholder.typicode.com/todos/1'),
-  )
+  const response = await ctx.schedule(() => fetch('https://jsonplaceholder.typicode.com/todos/1'))
   return await response.json()
 })
 

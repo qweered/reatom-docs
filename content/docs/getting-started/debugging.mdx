@@ -3,7 +3,7 @@ title: Debugging
 description: Explaining how to install and use debug tools
 ---
 
-import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs'
 
 {/* TODO add `anAtom.onChange(console.log)` docs above */}
 
@@ -12,26 +12,10 @@ For debugging, we recommend using the `@reatom/logger` package, which is include
 ## Installation
 
 <Tabs groupId="package-manager" items={['npm', 'yarn', 'pnpm', 'bun']} persist>
-  <Tab value="npm">
-    ```bash
-    npm install @reatom/logger
-    ```
-  </Tab>
-  <Tab value="yarn">
-    ```bash
-    yarn add @reatom/logger
-    ```
-  </Tab>
-  <Tab value="pnpm">
-    ```bash
-    pnpm add @reatom/logger
-    ```
-  </Tab>
-  <Tab value="bun">
-    ```bash
-    bun add @reatom/logger
-    ```
-  </Tab>
+  <Tab value="npm">```bash npm install @reatom/logger ```</Tab>
+  <Tab value="yarn">```bash yarn add @reatom/logger ```</Tab>
+  <Tab value="pnpm">```bash pnpm add @reatom/logger ```</Tab>
+  <Tab value="bun">```bash bun add @reatom/logger ```</Tab>
 </Tabs>
 
 After the installation is finished, you need to connect the logger to the reatom context.
@@ -64,10 +48,7 @@ if (import.meta.env.DEV) {
 
 const counterAtom = atom(0, 'counterAtom')
 const doubledAtom = atom((ctx) => counterAtom * 2, 'doubledAtom')
-const increment = action(
-  (ctx) => counterAtom(ctx, (state) => state + 1),
-  'increment',
-)
+const increment = action((ctx) => counterAtom(ctx, (state) => state + 1), 'increment')
 
 ctx.subscribe(doubledAtom, () => {})
 

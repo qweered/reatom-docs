@@ -1,4 +1,4 @@
-import { useEffect, RefObject } from "react"
+import { useEffect, RefObject } from 'react'
 
 export function useIntersectionAnimation(ref: RefObject<HTMLElement>): void {
   useEffect(() => {
@@ -6,7 +6,7 @@ export function useIntersectionAnimation(ref: RefObject<HTMLElement>): void {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("opacity-100", "translate-y-0")
+            entry.target.classList.add('opacity-100', 'translate-y-0')
             observer.unobserve(entry.target)
           }
         })
@@ -24,4 +24,4 @@ export function useIntersectionAnimation(ref: RefObject<HTMLElement>): void {
       }
     }
   }, [ref])
-} 
+}

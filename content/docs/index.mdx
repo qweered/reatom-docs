@@ -8,21 +8,45 @@ description: Reatom - tiny and powerful reactive system with immutable nature
 ## Key features
 
 - **simple** and powerful abstractions.
-  <small>There are only three main primitives: `ctx`, `atom`, `action`. All other features and packages work on top of that.</small>
+  <small>
+    There are only three main primitives: `ctx`, `atom`, `action`. All other features and packages
+    work on top of that.
+  </small>
 - **immutable** and reliable.
   <small>All pure computations processed with atomicity guarantees.</small>
 - **explicit reactivity** without proxies.
-  <small>We use the [atomization](/recipes/atomization) pattern to achieve [maximum](#how-performant-reatom-is) performance </small>
+  <small>
+    We use the [atomization](/recipes/atomization) pattern to achieve
+    [maximum](#how-performant-reatom-is) performance{' '}
+  </small>
 - perfect **effects management**.
-  <small>Advanced [async package](/packages/async) allows you to describe complex async flows, including caching, retrying and automatic cancellation with native `await` and `AbortController`.</small>
+  <small>
+    Advanced [async package](/packages/async) allows you to describe complex async flows, including
+    caching, retrying and automatic cancellation with native `await` and `AbortController`.
+  </small>
 - nice **debugging** experience.
-  <small>Each atom and action updates the ctx's [immutable cause (call) stack](/getting-started/debugging/). It helps a&nbsp;lot in debugging complex async flows. We also provide a [logger package](/packages/logger) for that.</small>
+  <small>
+    Each atom and action updates the ctx's [immutable cause (call)
+    stack](/getting-started/debugging/). It helps a&nbsp;lot in debugging complex async flows. We
+    also provide a [logger package](/packages/logger) for that.
+  </small>
 - implicit **DI**.
-  <small>An isolation layer is essential to ensure <strong>complete safety</strong> when running tests and using SSR. The `ctx` is such an isolation layer! We offer a [testing package](/packages/testing) with various helpers for mocking.</small>
+  <small>
+    An isolation layer is essential to ensure <strong>complete safety</strong> when running tests
+    and using SSR. The `ctx` is such an isolation layer! We offer a [testing
+    package](/packages/testing) with various helpers for mocking.
+  </small>
 - actor-like **lifecycle hooks**
-  <small>Learn more about [self-sufficient models](/handbook#lifecycle) to achieve true modularity.</small>
+  <small>
+    Learn more about [self-sufficient models](/handbook#lifecycle) to achieve true modularity.
+  </small>
 - **smallest bundle** size: [2 KB](https://bundlejs.com/?q=%40reatom%2Fcore) gzipped
-  <small>With the power of base primitives, the whole ecosystem with <strong>A&nbsp;LOT</strong> of enterprise-level helpers takes only [~15KB](https://bundlejs.com/?q=%40reatom%2Fframework%2C%40reatom%2Fnpm-react%2C%40reatom%2Fpersist-web-storage%2C%40reatom%2Fundo%2C%40reatom%2Fform-web&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22use-sync-external-store%22%5D%7D%7D). Insane!</small>
+  <small>
+    With the power of base primitives, the whole ecosystem with <strong>A&nbsp;LOT</strong> of
+    enterprise-level helpers takes only
+    [~15KB](https://bundlejs.com/?q=%40reatom%2Fframework%2C%40reatom%2Fnpm-react%2C%40reatom%2Fpersist-web-storage%2C%40reatom%2Fundo%2C%40reatom%2Fform-web&config=%7B%22esbuild%22%3A%7B%22external%22%3A%5B%22react%22%2C%22use-sync-external-store%22%5D%7D%7D).
+    Insane!
+  </small>
 - **the best TypeScript** experience
   <small>[Type inference](/recipes/typescript/) is one of the main priorities for Reatom.</small>
 
@@ -172,11 +196,9 @@ const fetchIssues = reatomAsync(async (ctx, query: string) => {
   withRetry({
     onReject(ctx, error: any, retries) {
       // return delay in ms or -1 to prevent retries
-      return error?.message.includes('rate limit')
-        ? 100 * Math.min(500, retries ** 2)
-        : -1
-    },
-  }),
+      return error?.message.includes('rate limit') ? 100 * Math.min(500, retries ** 2) : -1
+    }
+  })
 )
 
 // run fetchIssues on every searchAtom update
@@ -196,7 +218,7 @@ export const Search = () => {
     (ctx) =>
       // even if there are no pending requests, we need to wait for retries
       // let do not show the limit error to make him think that everything is fine for a better UX
-      ctx.spy(fetchIssues.pendingAtom) + ctx.spy(fetchIssues.retriesAtom) > 0,
+      ctx.spy(fetchIssues.pendingAtom) + ctx.spy(fetchIssues.retriesAtom) > 0
   )
 
   return (
@@ -319,8 +341,9 @@ https://www.patreon.com/artalar_dev
 - **Good primitive is more than a framework**
 - Composition beats configuration
 
-{/* - General context explicit enough to be hidden
-- Feature semantic should be visible */}
+{/\* - General context explicit enough to be hidden
+
+- Feature semantic should be visible \*/}
 
 ## Credits
 

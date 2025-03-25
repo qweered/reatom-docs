@@ -34,7 +34,7 @@ export const fetchUser = action(
       const user = { id: userDto.id, name: atom(userDto.name, 'user.name') }
       userAtom(ctx, user)
     }),
-  'fetchUser',
+  'fetchUser'
 )
 
 export const syncUserName = action((ctx) => {
@@ -51,7 +51,7 @@ import { useAction, useAtom } from '@reatom/npm-react'
 const [name] = useAtom((ctx) => ctx.spy(ctx.get(userAtom).name))
 
 const handleChange = useAction((ctx, e: React.ChangeEvent<HTMLInputElement>) =>
-  ctx.get(userAtom).name(ctx, e.currentTarget.name),
+  ctx.get(userAtom).name(ctx, e.currentTarget.name)
 )
 
 const handleSubmit = useAction(syncUserName)

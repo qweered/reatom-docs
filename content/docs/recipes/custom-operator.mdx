@@ -17,7 +17,7 @@ import { Atom, CtxSpy } from '@reatom/core'
 
 declare function mapState<T, Res>(
   mapper: Fn<[CtxSpy, T, undefined | T], Res>,
-  name?: string,
+  name?: string
 ): (anAtom: Atom<T>) => Atom<Res>
 ```
 
@@ -29,7 +29,7 @@ If an operator doesn't create a new atom and instead mutates the passed one, you
 import { Atom, AtomState } from '@reatom/core'
 
 declare function withStateHistory<T extends Atom>(
-  length: string,
+  length: string
 ): (anAtom: T) => T & {
   stateHistoryAtom: Atom<AtomState<T>>
 }

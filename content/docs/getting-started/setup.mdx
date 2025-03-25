@@ -3,7 +3,7 @@ title: Setup
 description: Explaining initial setup
 ---
 
-import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs'
 
 Reatom is a framework-agnostic state manager, meaning you can use it with various adapters for different frameworks.
 This guide focuses on using Reatom with React.js, as it's currently the most popular view library.
@@ -32,26 +32,10 @@ npm run dev
 ## Add to existing project
 
 <Tabs groupId="package-manager" items={['npm', 'yarn', 'pnpm', 'bun']} persist>
-  <Tab value="npm">
-    ```bash
-    npm install @reatom/core
-    ```
-  </Tab>
-  <Tab value="yarn">
-    ```bash
-    yarn add @reatom/core
-    ```
-  </Tab>
-  <Tab value="pnpm">
-    ```bash
-    pnpm add @reatom/core
-    ```
-  </Tab>
-  <Tab value="bun">
-    ```bash
-    bun add @reatom/core
-    ```
-  </Tab>
+  <Tab value="npm">```bash npm install @reatom/core ```</Tab>
+  <Tab value="yarn">```bash yarn add @reatom/core ```</Tab>
+  <Tab value="pnpm">```bash pnpm add @reatom/core ```</Tab>
+  <Tab value="bun">```bash bun add @reatom/core ```</Tab>
 </Tabs>
 
 ### With React
@@ -59,26 +43,10 @@ npm run dev
 #### Installation
 
 <Tabs groupId="package-manager" items={['npm', 'yarn', 'pnpm', 'bun']} persist>
-  <Tab value="npm">
-    ```bash
-    npm install @reatom/npm-react
-    ```
-  </Tab>
-  <Tab value="yarn">
-    ```bash
-    yarn add @reatom/npm-react
-    ```
-  </Tab>
-  <Tab value="pnpm">
-    ```bash
-    pnpm add @reatom/npm-react
-    ```
-  </Tab>
-  <Tab value="bun">
-    ```bash
-    bun add @reatom/npm-react
-    ```
-  </Tab>
+  <Tab value="npm">```bash npm install @reatom/npm-react ```</Tab>
+  <Tab value="yarn">```bash yarn add @reatom/npm-react ```</Tab>
+  <Tab value="pnpm">```bash pnpm add @reatom/npm-react ```</Tab>
+  <Tab value="bun">```bash bun add @reatom/npm-react ```</Tab>
 </Tabs>
 
 You need to set up the main context and wrap your application in a provider at the top level.
@@ -129,10 +97,7 @@ const nameAtom = atom('Joe')
 const Greeting = () => {
   const t = useTranslation()
   const [name, setName] = useAtom(nameAtom)
-  const [greeting] = useAtom(
-    (ctx) => `${t('common:GREETING')} ${ctx.spy(nameAtom)}!`,
-    [t],
-  )
+  const [greeting] = useAtom((ctx) => `${t('common:GREETING')} ${ctx.spy(nameAtom)}!`, [t])
 
   return (
     <>

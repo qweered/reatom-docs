@@ -1,10 +1,10 @@
-"use client"
+'use client'
 
-import type React from "react"
+import type React from 'react'
 
-import { useState } from "react"
-import { Card, CardContent } from "@/components/ui/card"
-import { cn } from "@/lib/utils"
+import { useState } from 'react'
+import { Card, CardContent } from '@/components/ui/card'
+import { cn } from '@/lib/utils'
 
 interface AnimatedCardProps {
   children: React.ReactNode
@@ -33,7 +33,7 @@ export function AnimatedCard({ children, className }: AnimatedCardProps) {
 
   return (
     <div
-      className="relative group perspective-1000"
+      className="group perspective-1000 relative"
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => {
@@ -42,21 +42,23 @@ export function AnimatedCard({ children, className }: AnimatedCardProps) {
       }}
     >
       <Card
-        className={cn("bg-zinc-900/50 border-white/10 hover:border-white/50 transition-all duration-300", className)}
+        className={cn(
+          'border-white/10 bg-zinc-900/50 transition-all duration-300 hover:border-white/50',
+          className
+        )}
         style={{
           transform: `rotateX(${position.y}deg) rotateY(${position.x}deg)`,
-          transition: isHovering ? "transform 0.1s ease-out" : "transform 0.3s ease-out",
+          transition: isHovering ? 'transform 0.1s ease-out' : 'transform 0.3s ease-out'
         }}
       >
-        <CardContent className="p-6 relative z-10">{children}</CardContent>
+        <CardContent className="relative z-10 p-6">{children}</CardContent>
       </Card>
       <div
-        className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg -z-10 blur-xl"
+        className="absolute inset-0 -z-10 rounded-lg bg-gradient-to-r from-white/0 via-white/20 to-white/0 opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-100"
         style={{
-          transform: `translateX(${position.x * 2}px) translateY(${position.y * 2}px)`,
+          transform: `translateX(${position.x * 2}px) translateY(${position.y * 2}px)`
         }}
       />
     </div>
   )
 }
-

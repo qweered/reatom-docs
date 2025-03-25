@@ -1,21 +1,14 @@
-import { source } from '@/lib/source';
-import {
-  DocsPage,
-  DocsBody,
-  DocsDescription,
-  DocsTitle,
-} from 'fumadocs-ui/page';
-import { notFound } from 'next/navigation';
-import defaultMdxComponents, { createRelativeLink } from 'fumadocs-ui/mdx';
+import { source } from '@/lib/source'
+import { DocsPage, DocsBody, DocsDescription, DocsTitle } from 'fumadocs-ui/page'
+import { notFound } from 'next/navigation'
+import defaultMdxComponents, { createRelativeLink } from 'fumadocs-ui/mdx'
 
-export default async function Page(props: {
-  params: Promise<{ slug?: string[] }>;
-}) {
-  const params = await props.params;
-  const page = source.getPage(params.slug);
-  if (!page) notFound();
+export default async function Page(props: { params: Promise<{ slug?: string[] }> }) {
+  const params = await props.params
+  const page = source.getPage(params.slug)
+  if (!page) notFound()
 
-  const MDXContent = page.data.body;
+  const MDXContent = page.data.body
 
   return (
     <DocsPage
@@ -25,7 +18,7 @@ export default async function Page(props: {
         owner: 'artalar',
         repo: 'reatom',
         sha: 'main',
-        path: `www/docs/${page.file.path}`,
+        path: `www/docs/${page.file.path}`
       }}
     >
       <DocsTitle>{page.data.title}</DocsTitle>
@@ -35,28 +28,26 @@ export default async function Page(props: {
           components={{
             ...defaultMdxComponents,
             // this allows you to link to other pages with relative file paths
-            a: createRelativeLink(source, page),
+            a: createRelativeLink(source, page)
             // you can add other MDX components here
           }}
         />
       </DocsBody>
     </DocsPage>
-  );
+  )
 }
 
 export async function generateStaticParams() {
-  return source.generateParams();
+  return source.generateParams()
 }
 
-export async function generateMetadata(props: {
-  params: Promise<{ slug?: string[] }>;
-}) {
-  const params = await props.params;
-  const page = source.getPage(params.slug);
-  if (!page) notFound();
+export async function generateMetadata(props: { params: Promise<{ slug?: string[] }> }) {
+  const params = await props.params
+  const page = source.getPage(params.slug)
+  if (!page) notFound()
 
   return {
     title: page.data.title,
-    description: page.data.description,
-  };
+    description: page.data.description
+  }
 }

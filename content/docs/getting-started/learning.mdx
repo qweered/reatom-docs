@@ -5,35 +5,18 @@ sidebar:
   order: 2
 ---
 
-import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs'
 
 ### Before we start
 
 In the examples we will use the [@reatom/framework](/packages/framework/) package which is an umbrella package for the most common reatom packages.
 You can install it with the following command
 
-
 <Tabs groupId="package-manager" items={['npm', 'yarn', 'pnpm', 'bun']} persist>
-    <Tab value="npm">
-        ```bash
-        npm install @reatom/framework
-        ```
-    </Tab>
-    <Tab value="yarn">
-        ```bash
-        yarn add @reatom/framework
-        ```
-    </Tab>
-    <Tab value="pnpm">
-        ```bash
-        pnpm add @reatom/framework
-        ```
-    </Tab>
-    <Tab value="bun">
-        ```bash
-        bun add @reatom/framework
-        ```
-    </Tab>
+  <Tab value="npm">```bash npm install @reatom/framework ```</Tab>
+  <Tab value="yarn">```bash yarn add @reatom/framework ```</Tab>
+  <Tab value="pnpm">```bash pnpm add @reatom/framework ```</Tab>
+  <Tab value="bun">```bash bun add @reatom/framework ```</Tab>
 </Tabs>
 
 ### Basic primitives
@@ -230,9 +213,7 @@ export const todoAtom = atom(null)
 export const isLoadingAtom = atom(false)
 
 export const fetchTodo = action(async (ctx) => {
-  const response = await ctx.schedule(() =>
-    fetch('https://jsonplaceholder.typicode.com/todos/1'),
-  )
+  const response = await ctx.schedule(() => fetch('https://jsonplaceholder.typicode.com/todos/1'))
   return await response.json()
 })
 

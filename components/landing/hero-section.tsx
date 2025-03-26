@@ -51,10 +51,10 @@ export function HeroSection() {
       <div className="relative z-10 container">
         <div className="flex flex-col items-center text-center">
           <Badge variant="outline" className="mb-6 flex items-center gap-1">
-            <Zap className="h-3 w-3 animate-pulse text-yellow-400" />
+            <Zap className="h-3 w-3 animate-pulse fill-yellow-400 text-yellow-400" />
             v4 Now Available
           </Badge>
-          <AnimatedGradientText className="mb-6 max-w-4xl text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl">
+          <AnimatedGradientText className="mb-6 max-w-4xl pb-2 text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl">
             The State Manager That Moves at the Speed of Thought
           </AnimatedGradientText>
           <p className="mt-4 mb-8 max-w-[700px] text-lg md:text-xl">
@@ -65,9 +65,9 @@ export function HeroSection() {
             <Link href="/docs/getting-started/setup" passHref>
               <Button
                 size="lg"
-                className="text-background hover:bg-foreground/80 animate-pulse gap-2 rounded-full px-8 hover:animate-none"
+                className="text-background hover:bg-foreground/80 gap-2 rounded-full px-8 hover:animate-none"
               >
-                <Zap className="h-4 w-4 text-yellow-300" />
+                <Zap className="h-4 w-4 fill-yellow-300 text-yellow-300" />
                 Get Started
                 <ArrowRight className="h-4 w-4" />
               </Button>

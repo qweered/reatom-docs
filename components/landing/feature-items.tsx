@@ -1,48 +1,61 @@
-import { ReactNode } from 'react'
-import { Code, Lock, Gauge, Workflow, Sparkles, Database } from 'lucide-react'
-import { AnimatedCard } from './animated-card'
+import { FeatureCard } from './feature-card'
+import { FeatureCardContainer } from './feature-card-container'
 
 export interface FeatureItem {
-  icon: ReactNode
   title: string
   description: string
+  theme:
+    | 'performance'
+    | 'debugging'
+    | 'simplicity'
+    | 'typesafety'
+    | 'ecosystem'
+    | 'extensibility'
+    | 'effects'
 }
 
 export const featureItems: FeatureItem[] = [
   {
-    icon: <Code className="text-primary h-6 w-6" />,
-    title: 'Simple & Powerful Abstractions',
+    title: 'Performance',
     description:
-      'Only three main primitives: ctx, atom, action. All other features and packages work on top of that.'
+      "Engineered for maximum speed with minimal overhead. Reatom's atomization pattern ensures lightning-fast updates and efficient reactivity without proxies.",
+    theme: 'performance'
   },
   {
-    icon: <Lock className="text-primary h-6 w-6" />,
-    title: 'Immutable & Reliable',
+    title: 'Debugging',
     description:
-      'All pure computations processed with atomicity guarantees for maximum reliability.'
+      'Powerful debugging capabilities that make tracking state changes and diagnosing issues easier than ever. Each update builds a cause stack for complete transparency.',
+    theme: 'debugging'
   },
   {
-    icon: <Gauge className="text-primary h-6 w-6" />,
-    title: 'Explicit Reactivity',
-    description: 'No proxies. We use the atomization pattern to achieve maximum performance.'
+    title: 'Simplicity',
+    description:
+      'Only three main primitives: ctx, atom, action. Clean, intuitive API that makes state management a zen-like experience.',
+    theme: 'simplicity'
   },
   {
-    icon: <Workflow className="text-primary h-6 w-6" />,
-    title: 'Perfect Effects Management',
+    title: 'Typesafety',
     description:
-      'Advanced async package for complex flows, including caching, retrying and automatic cancellation.'
+      'First-class TypeScript support with automatic type inference. Your compiler becomes your ally, preventing bugs before they happen.',
+    theme: 'typesafety'
   },
   {
-    icon: <Sparkles className="text-primary h-6 w-6" />,
-    title: 'Nice Debugging Experience',
+    title: 'Ecosystem',
     description:
-      "Each atom and action updates the ctx's immutable cause stack, helping debug complex async flows."
+      'A robust ecosystem of interconnected packages built to work seamlessly together. Adaptors for all popular frameworks and specialized solutions for common problems.',
+    theme: 'ecosystem'
   },
   {
-    icon: <Database className="text-primary h-6 w-6" />,
-    title: 'Built-in Data Fetching',
+    title: 'Extensibility',
     description:
-      'Alternative to TanStack Query with automatic caching, retrying, and dependency tracking out of the box.'
+      'Modular architecture lets you add only what you need. Compose atoms and actions like building blocks to create complex state management solutions.',
+    theme: 'extensibility'
+  },
+  {
+    title: 'Effects Management',
+    description:
+      'Advanced async package for complex flows, including caching, retrying, and automatic cancellation. Handles side effects with precision and reliability.',
+    theme: 'effects'
   }
 ]
 
@@ -52,22 +65,30 @@ export function FeaturesSection() {
       <div className="container">
         <div className="mb-16 space-y-4 text-center">
           <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-            Engineered for Performance
+            State Management Reimagined
           </h2>
-          <p className="mx-auto max-w-[700px] text-lg">
-            Reatom provides powerful abstractions with minimal overhead, perfect for any project
-            from small libraries to large applications.
+          <p className="mx-auto max-w-[700px] text-lg text-zinc-700 dark:text-zinc-300">
+            Reatom provides powerful abstractions with the reliability and performance of modern
+            processor architecture.
           </p>
+
+          {/* Animated scroll indicator */}
+          <div className="mt-8 flex justify-center">
+            <div className="flex h-12 w-8 items-center justify-center rounded-full border border-zinc-300 dark:border-zinc-700">
+              <div className="bg-primary h-3 w-1 animate-bounce rounded-full"></div>
+            </div>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-2">
           {featureItems.map((feature, index) => (
-            <AnimatedCard
-              key={index}
-              icon={feature.icon}
-              title={feature.title}
-              description={feature.description}
-            />
+            <FeatureCardContainer key={index} index={index}>
+              <FeatureCard
+                title={feature.title}
+                description={feature.description}
+                theme={feature.theme}
+              />
+            </FeatureCardContainer>
           ))}
         </div>
       </div>

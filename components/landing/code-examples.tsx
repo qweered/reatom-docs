@@ -2,8 +2,6 @@
 
 import { useState } from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { AnimatedCard } from './animated-card'
-import { Package, Code, Layers } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { CopyButton } from '@/components/ui/copy-button'
 
@@ -171,7 +169,8 @@ export function CodeExamples() {
           </Tabs>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-3">
+        {/* TODO: uncomment if needed */}
+        {/* <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-3">
           <AnimatedCard>
             <h3 className="mb-4 text-xl font-bold">Smallest Bundle Size</h3>
             <p className="mb-4 text-zinc-600 dark:text-zinc-400">
@@ -206,7 +205,7 @@ export function CodeExamples() {
               <span className="text-sm font-medium">Use Anywhere</span>
             </div>
           </AnimatedCard>
-        </div>
+        </div> */}
       </div>
     </section>
   )

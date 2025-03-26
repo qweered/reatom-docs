@@ -1,171 +1,183 @@
 'use client'
 
-import { useRef, RefObject } from 'react'
 import type { JSX } from 'react'
-import { useIntersectionAnimation } from '@/components/hooks/use-intersection-animation'
+import { cn } from '@/lib/utils'
 
 interface ComparisonItem {
   feature: string
-  reatom: string
-  redux: string
-  mobx: string
-  zustand: string
+  reatom: boolean | string
+  redux: boolean | string
+  mobx: boolean | string
+  zustand: boolean | string
 }
 
 // Shared data structure for all comparisons
-const comparisonData: ComparisonItem[] = [
+const comparisonItems: ComparisonItem[] = [
   {
-    feature: 'Bundle Size',
-    reatom: '2KB',
-    redux: '16KB+',
-    mobx: '22KB+',
-    zustand: '3KB+'
+    feature: 'Immutable state',
+    reatom: true,
+    redux: true,
+    mobx: false,
+    zustand: true
   },
   {
-    feature: 'TypeScript Support',
-    reatom: 'Excellent',
-    redux: 'Good',
-    mobx: 'Good',
-    zustand: 'Good'
+    feature: 'Explicit reactivity',
+    reatom: true,
+    redux: false,
+    mobx: false,
+    zustand: false
   },
   {
-    feature: 'Async Handling',
-    reatom: 'Built-in',
-    redux: 'Middleware',
-    mobx: 'Manual',
-    zustand: 'Manual'
+    feature: 'Automatic dependency tracking',
+    reatom: true,
+    redux: false,
+    mobx: true,
+    zustand: false
   },
   {
-    feature: 'Debugging',
-    reatom: 'DevTools + Cause Stack',
-    redux: 'Console + DevTools',
-    mobx: 'Console + DevTools',
-    zustand: 'Console + DevTools'
+    feature: 'Atomicity guarantees',
+    reatom: true,
+    redux: false,
+    mobx: false,
+    zustand: false
   },
   {
-    feature: 'Reactivity Model',
-    reatom: 'Explicit',
-    redux: 'Manual',
-    mobx: 'Proxies',
-    zustand: 'Subscriptions'
+    feature: 'Built-in data fetching',
+    reatom: true,
+    redux: 'RTK Query',
+    mobx: false,
+    zustand: false
   },
   {
-    feature: 'Data Fetching',
-    reatom: 'Built-in',
-    redux: 'External',
-    mobx: 'External',
-    zustand: 'External'
-  },
-  {
-    feature: 'Dependency Tracking',
-    reatom: 'Automatic',
-    redux: 'Manual',
-    mobx: 'Automatic',
-    zustand: 'Manual'
+    feature: 'Debugging tools',
+    reatom: true,
+    redux: true,
+    mobx: true,
+    zustand: true
   }
 ]
 
 export function ComparisonSection(): JSX.Element {
   return (
-    <section
-      id="comparison"
-      className="border-t border-white/10 bg-gradient-to-b from-black to-zinc-950 py-24"
-    >
+    <section id="comparison" className="py-24">
       <div className="container">
         <div className="mb-16 space-y-4 text-center">
           <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Why Choose Reatom?</h2>
-          <p className="mx-auto max-w-[700px] text-lg text-zinc-400">
+          <p className="mx-auto max-w-[700px] text-lg">
             See how Reatom compares to other popular state management solutions.
           </p>
         </div>
 
-        {/* Desktop comparison table - hidden on mobile */}
-        <div className="hidden md:block">
-          <table className="w-full border-collapse">
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse border border-zinc-200 dark:border-zinc-800">
             <thead>
-              <tr className="border-b border-white/10">
-                <th className="px-6 py-4 text-left">Feature</th>
-                <th className="px-6 py-4 text-center">Reatom</th>
-                <th className="px-6 py-4 text-center">Redux</th>
-                <th className="px-6 py-4 text-center">MobX</th>
-                <th className="px-6 py-4 text-center">Zustand</th>
+              <tr className="border-b border-zinc-200 dark:border-zinc-800">
+                <th className="px-4 py-4 text-left font-medium">Feature</th>
+                <th className="px-4 py-4 text-center font-medium">Reatom</th>
+                <th className="px-4 py-4 text-center font-medium">Redux</th>
+                <th className="px-4 py-4 text-center font-medium">MobX</th>
+                <th className="px-4 py-4 text-center font-medium">Zustand</th>
               </tr>
             </thead>
             <tbody>
-              {comparisonData.map((item, index) => (
-                <TableRow key={index} item={item} />
+              {comparisonItems.map((item, index) => (
+                <tr
+                  key={index}
+                  className={cn(
+                    'border-b border-zinc-200 dark:border-zinc-800',
+                    index % 2 === 0 ? 'bg-zinc-50 dark:bg-zinc-900/50' : ''
+                  )}
+                >
+                  <td className="px-4 py-4">{item.feature}</td>
+                  <td className="px-4 py-4 text-center">
+                    {typeof item.reatom === 'boolean' ? (
+                      item.reatom ? (
+                        <CheckIcon className="mx-auto h-5 w-5 text-green-500" />
+                      ) : (
+                        <XIcon className="mx-auto h-5 w-5 text-red-500" />
+                      )
+                    ) : (
+                      <span className="text-sm">{item.reatom}</span>
+                    )}
+                  </td>
+                  <td className="px-4 py-4 text-center">
+                    {typeof item.redux === 'boolean' ? (
+                      item.redux ? (
+                        <CheckIcon className="mx-auto h-5 w-5 text-green-500" />
+                      ) : (
+                        <XIcon className="mx-auto h-5 w-5 text-red-500" />
+                      )
+                    ) : (
+                      <span className="text-sm">{item.redux}</span>
+                    )}
+                  </td>
+                  <td className="px-4 py-4 text-center">
+                    {typeof item.mobx === 'boolean' ? (
+                      item.mobx ? (
+                        <CheckIcon className="mx-auto h-5 w-5 text-green-500" />
+                      ) : (
+                        <XIcon className="mx-auto h-5 w-5 text-red-500" />
+                      )
+                    ) : (
+                      <span className="text-sm">{item.mobx}</span>
+                    )}
+                  </td>
+                  <td className="px-4 py-4 text-center">
+                    {typeof item.zustand === 'boolean' ? (
+                      item.zustand ? (
+                        <CheckIcon className="mx-auto h-5 w-5 text-green-500" />
+                      ) : (
+                        <XIcon className="mx-auto h-5 w-5 text-red-500" />
+                      )
+                    ) : (
+                      <span className="text-sm">{item.zustand}</span>
+                    )}
+                  </td>
+                </tr>
               ))}
             </tbody>
           </table>
-        </div>
-
-        {/* Mobile comparison cards - visible only on mobile */}
-        <div className="space-y-6 md:hidden">
-          {comparisonData.map((item, index) => (
-            <MobileCard key={index} item={item} />
-          ))}
         </div>
       </div>
     </section>
   )
 }
 
-interface RowProps {
-  item: ComparisonItem
-}
-
-// Simplified table row component
-function TableRow({ item }: RowProps): JSX.Element {
-  const rowRef = useRef<HTMLTableRowElement>(null)
-  useIntersectionAnimation(rowRef as unknown as RefObject<HTMLElement>)
-
+function CheckIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <tr
-      ref={rowRef}
-      className="bg-primary/5 translate-y-4 border-b border-white/10 opacity-0 transition-all duration-700"
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     >
-      <td className="px-6 py-4 text-zinc-300">{item.feature}</td>
-      <td className="text-primary px-6 py-4 text-center font-medium">{item.reatom}</td>
-      <td className="px-6 py-4 text-center text-zinc-400">{item.redux}</td>
-      <td className="px-6 py-4 text-center text-zinc-400">{item.mobx}</td>
-      <td className="px-6 py-4 text-center text-zinc-400">{item.zustand}</td>
-    </tr>
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
   )
 }
 
-// Simplified mobile card component
-function MobileCard({ item }: RowProps): JSX.Element {
-  const cardRef = useRef<HTMLDivElement>(null)
-  useIntersectionAnimation(cardRef as unknown as RefObject<HTMLElement>)
-
+function XIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <div
-      ref={cardRef}
-      className="translate-y-4 overflow-hidden rounded-lg border border-white/10 opacity-0 transition-all duration-700"
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     >
-      <div className="bg-white/5 px-4 py-3 font-medium">{item.feature}</div>
-      <div className="grid grid-cols-2 divide-x divide-white/10">
-        <div className="bg-white/10 p-4">
-          <div className="mb-1 text-sm text-zinc-400">Reatom</div>
-          <div className="font-bold text-white">{item.reatom}</div>
-        </div>
-        <div className="p-4">
-          <div className="grid grid-cols-1 gap-4">
-            <div>
-              <div className="mb-1 text-sm text-zinc-400">Redux</div>
-              <div className="font-medium">{item.redux}</div>
-            </div>
-            <div>
-              <div className="mb-1 text-sm text-zinc-400">MobX</div>
-              <div className="font-medium">{item.mobx}</div>
-            </div>
-            <div>
-              <div className="mb-1 text-sm text-zinc-400">Zustand</div>
-              <div className="font-medium">{item.zustand}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      <line x1="18" y1="6" x2="6" y2="18" />
+      <line x1="6" y1="6" x2="18" y2="18" />
+    </svg>
   )
 }

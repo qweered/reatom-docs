@@ -88,12 +88,12 @@ export function HeroSection() {
               <Star className="h-4 w-4" />
               <span>1.1k+ Stars</span>
             </div>
-            <div className="h-4 w-px bg-white/20"></div>
+            <div className="bg-foreground/20 h-4 w-px"></div>
             <div className="flex items-center gap-1">
               <GitFork className="h-4 w-4" />
               <span>117+ Forks</span>
             </div>
-            <div className="h-4 w-px bg-white/20"></div>
+            <div className="bg-foreground/20 h-4 w-px"></div>
             <div className="flex items-center gap-1">
               <Package className="h-4 w-4" />
               <span>2KB gzipped</span>

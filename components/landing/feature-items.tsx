@@ -10,36 +10,36 @@ export interface FeatureItem {
 
 export const featureItems: FeatureItem[] = [
   {
-    icon: <Code className="h-6 w-6 text-white" />,
+    icon: <Code className="text-primary h-6 w-6" />,
     title: 'Simple & Powerful Abstractions',
     description:
       'Only three main primitives: ctx, atom, action. All other features and packages work on top of that.'
   },
   {
-    icon: <Lock className="h-6 w-6 text-white" />,
+    icon: <Lock className="text-primary h-6 w-6" />,
     title: 'Immutable & Reliable',
     description:
       'All pure computations processed with atomicity guarantees for maximum reliability.'
   },
   {
-    icon: <Gauge className="h-6 w-6 text-white" />,
+    icon: <Gauge className="text-primary h-6 w-6" />,
     title: 'Explicit Reactivity',
     description: 'No proxies. We use the atomization pattern to achieve maximum performance.'
   },
   {
-    icon: <Workflow className="h-6 w-6 text-white" />,
+    icon: <Workflow className="text-primary h-6 w-6" />,
     title: 'Perfect Effects Management',
     description:
       'Advanced async package for complex flows, including caching, retrying and automatic cancellation.'
   },
   {
-    icon: <Sparkles className="h-6 w-6 text-white" />,
+    icon: <Sparkles className="text-primary h-6 w-6" />,
     title: 'Nice Debugging Experience',
     description:
       "Each atom and action updates the ctx's immutable cause stack, helping debug complex async flows."
   },
   {
-    icon: <Database className="h-6 w-6 text-white" />,
+    icon: <Database className="text-primary h-6 w-6" />,
     title: 'Built-in Data Fetching',
     description:
       'Alternative to TanStack Query with automatic caching, retrying, and dependency tracking out of the box.'
@@ -48,13 +48,13 @@ export const featureItems: FeatureItem[] = [
 
 export function FeaturesSection() {
   return (
-    <section id="features" className="relative border-t border-white/10 py-24">
+    <section id="features" className="relative py-24">
       <div className="container">
         <div className="mb-16 space-y-4 text-center">
           <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
             Engineered for Performance
           </h2>
-          <p className="mx-auto max-w-[700px] text-lg text-zinc-400">
+          <p className="mx-auto max-w-[700px] text-lg">
             Reatom provides powerful abstractions with minimal overhead, perfect for any project
             from small libraries to large applications.
           </p>
